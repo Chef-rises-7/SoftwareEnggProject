@@ -232,7 +232,7 @@ class NavBar extends Component {
               </NavLink>
 
               <NavLink
-                to="/"
+                to="/team"
                 className="NavLink nav-link"
                 style={styles}
                 activeClassName="selected"
@@ -387,6 +387,16 @@ class App extends Component {
                   hideLoader={this.props.hideLoader}
                   showLoader={this.props.showLoader}
                   emailid={this.state.emailid}
+                />
+              )}
+            />
+            <Route
+              path="/team"
+              render={(props) => (
+                <Teampage
+                  {...props}
+                  hideLoader={this.props.hideLoader}
+                  showLoader={this.props.showLoader}
                 />
               )}
             />

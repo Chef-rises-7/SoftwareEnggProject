@@ -19,7 +19,7 @@ import Homedetails from "./Components/Homedetails/Homedetails";
 import Footer from "./Components/Footer/Footer";
 import OnImagesLoaded from "react-on-images-loaded";
 import { GoogleLogin, GoogleLogout } from "react-google-login";
-
+import Printer from "./Components/Printer/Printer.js";
 class NavBar extends Component {
   constructor(props) {
     super(props);
@@ -222,7 +222,7 @@ class NavBar extends Component {
                 <div className="secondary_Text">Library</div>
               </NavLink>
               <NavLink
-                to="/"
+                to="/printmg"
                 className="NavLink nav-link"
                 style={styles}
                 activeClassName="selected"
@@ -377,6 +377,18 @@ class App extends Component {
                   emailid={this.state.emailid}
                 />
               ))}
+            />
+            <Route
+              path="/printmg"
+              exact
+              render={(props) => (
+                <Printer
+                  {...props}
+                  hideLoader={this.props.hideLoader}
+                  showLoader={this.props.showLoader}
+                  emailid={this.state.emailid}
+                />
+              )}
             />
           </Switch>
           <Error msg={this.state.error} showError={this.state.showError} />

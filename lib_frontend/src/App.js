@@ -21,6 +21,7 @@ import OnImagesLoaded from "react-on-images-loaded";
 import { GoogleLogin, GoogleLogout } from "react-google-login";
 import Printer from "./Components/Printer/Printer.js";
 import Teampage from "./Components/Teampage/Teampage.js";
+import LibStud from "./Components/LibStud/LibStud";
 class NavBar extends Component {
   constructor(props) {
     super(props);
@@ -85,9 +86,9 @@ class NavBar extends Component {
     });
   };
 
-  isAdmin() {}
+  isAdmin() { }
 
-  componentDidUpdate() {}
+  componentDidUpdate() { }
 
   render() {
     let styles = {
@@ -135,7 +136,7 @@ class NavBar extends Component {
               )}
               {/* Neer profile page */}
               <NavLink
-                to="/"
+                to="/library"
                 className="NavLink nav-link"
                 style={styles}
                 activeClassName="selected"
@@ -143,6 +144,7 @@ class NavBar extends Component {
               >
                 <div className="secondary_Text">Library</div>
               </NavLink>
+              
               <NavLink
                 to="/printmg"
                 className="NavLink nav-link"
@@ -164,7 +166,7 @@ class NavBar extends Component {
               </NavLink>
             </Nav>
 
-              {/* GAuth to be done */}
+            {/* GAuth to be done */}
           </Navbar.Collapse>
         </Navbar>
       </div>
@@ -270,6 +272,18 @@ class App extends Component {
                   emailid={this.state.emailid}
                 />
               )}
+            />
+            <Route
+              path="/library"
+              exact component={withRouter((props) => (
+                <LibStud
+                  {...props}
+                  hideLoader={this.props.hideLoader}
+                  showLoader={this.props.showLoader}
+                  emailid={this.state.emailid}
+
+                />
+              ))}
             />
             <Route
               path="/team"

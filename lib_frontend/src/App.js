@@ -85,22 +85,7 @@ class NavBar extends Component {
     });
   };
 
-  isAdmin() {
-    if (
-      this.state.email == "190010029@iitdh.ac.in" ||
-      this.state.email == "190010023@iitdh.ac.in" ||
-      this.state.email == "190010034@iitdh.ac.in"
-    ) {
-      this.setState({ isAdmin: true });
-    }
-
-    setInfo({
-      isAdmin: this.state.isAdmin,
-      isSigned: this.state.isSigned,
-      tokenId: this.state.tokenId,
-      email: this.state.email,
-    });
-  }
+  isAdmin() {}
 
   componentDidUpdate() {}
 

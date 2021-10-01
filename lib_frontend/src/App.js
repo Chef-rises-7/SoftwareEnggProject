@@ -147,71 +147,7 @@ class NavBar extends Component {
               ) : (
                 ""
               )}
-
-              {this.state.isSigned ? (
-                <>
-                  <Nav.Link
-                    onClick={() => {
-                      Swal.fire({
-                        title: "Look up profile details?",
-                        showCancelButton: true,
-                        confirmButtonText: "Look up",
-                        showLoaderOnConfirm: true,
-                        preConfirm: () => {
-                          var requestOptions = {
-                            method: "POST",
-                            headers: { "Content-Type": "application/json" },
-                            body: JSON.stringify({ email: this.state.email }),
-                          };
-                          return fetch(
-                            `http://localhost:5000/getProfile`,
-                            requestOptions
-                          )
-                            .then((response) => {
-                              if (!response.ok) {
-                                throw new Error(response.statusText);
-                              }
-                              return response.json();
-                            })
-                            .catch((error) => {
-                              Swal.showValidationMessage(
-                                `Request failed: ${error}`
-                              );
-                            });
-                        },
-                        allowOutsideClick: () => !Swal.isLoading(),
-                      }).then((result) => {
-                        if (result.isConfirmed) {
-                          console.log(result.value.Status);
-                          if (result.value.Status) {
-                            Swal.fire({
-                              icon: "info",
-                              title: `Hello!`,
-                              html:
-                                `<div style=text-align:start>` +
-                                `<b>User name: </b> ${result.value.student_name} <br>` +
-                                `<b>Roll number: </b> ${result.value.student_rollno} <br>` +
-                                `<b>Branch :  </b> ${result.value.student_branch} <br>` +
-                                `<b>Due amount (in Rs.): ${result.value.student_due} <br>` +
-                                `</div>`,
-                            });
-                          } else {
-                            Swal.fire({
-                              icon: "error",
-                              title: `${result.value.StatusMessage}`,
-                            });
-                          }
-                        }
-                      });
-                    }}
-                    className="NavLink nav-link"
-                  >
-                    <div className="secondary_Text">Profile</div>
-                  </Nav.Link>
-                </>
-              ) : (
-                ""
-              )}
+              {/* Neer profile page */}
               <NavLink
                 to="/"
                 className="NavLink nav-link"
@@ -242,48 +178,7 @@ class NavBar extends Component {
               </NavLink>
             </Nav>
 
-            <Nav fill>
-              <Nav.Link>
-                {!this.state.isSigned ? (
-                  <GoogleLogin
-                    clientId="1091397760192-opdoif28tbpiac2fpcjjdtv1ir3k4n26.apps.googleusercontent.com"
-                    render={(renderProps) => (
-                      <Button
-                        className="Button"
-                        onClick={renderProps.onClick}
-                        disabled={renderProps.disabled}
-                      >
-                        SIGN IN
-                      </Button>
-                    )}
-                    buttonText={this.state.value}
-                    onSuccess={this.signInOnSuccess}
-                    onFailure={this.signInOnError}
-                    cookiePolicy={"single_host_origin"}
-                    hostedDomain="iitdh.ac.in"
-                    isSignedIn={true}
-                  />
-                ) : (
-                  <GoogleLogout
-                    clientId="1091397760192-opdoif28tbpiac2fpcjjdtv1ir3k4n26.apps.googleusercontent.com"
-                    render={(renderProps) => (
-                      <Button
-                        className="Button"
-                        onClick={renderProps.onClick}
-                        disabled={renderProps.disabled}
-                      >
-                        SIGN OUT
-                      </Button>
-                    )}
-                    buttonText={this.state.value}
-                    onLogoutSuccess={this.signOutOnSuccess}
-                    onFailure={this.signOutOnError}
-                    hostedDomain="iitdh.ac.in"
-                    isSignedIn={true}
-                  />
-                )}
-              </Nav.Link>
-            </Nav>
+              {/* GAuth to be done */}
           </Navbar.Collapse>
         </Navbar>
       </div>

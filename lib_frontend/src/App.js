@@ -20,6 +20,7 @@ import Footer from "./Components/Footer/Footer";
 import OnImagesLoaded from "react-on-images-loaded";
 import { GoogleLogin, GoogleLogout } from "react-google-login";
 import Printer from "./Components/Printer/Printer.js";
+import Teampage from "./Components/Teampage/Teampage.js";
 class NavBar extends Component {
   constructor(props) {
     super(props);
@@ -84,22 +85,7 @@ class NavBar extends Component {
     });
   };
 
-  isAdmin() {
-    if (
-      this.state.email == "190010029@iitdh.ac.in" ||
-      this.state.email == "190010023@iitdh.ac.in" ||
-      this.state.email == "190010034@iitdh.ac.in"
-    ) {
-      this.setState({ isAdmin: true });
-    }
-
-    setInfo({
-      isAdmin: this.state.isAdmin,
-      isSigned: this.state.isSigned,
-      tokenId: this.state.tokenId,
-      email: this.state.email,
-    });
-  }
+  isAdmin() {}
 
   componentDidUpdate() {}
 
@@ -168,7 +154,7 @@ class NavBar extends Component {
               </NavLink>
 
               <NavLink
-                to="/"
+                to="/team"
                 className="NavLink nav-link"
                 style={styles}
                 activeClassName="selected"
@@ -282,6 +268,16 @@ class App extends Component {
                   hideLoader={this.props.hideLoader}
                   showLoader={this.props.showLoader}
                   emailid={this.state.emailid}
+                />
+              )}
+            />
+            <Route
+              path="/team"
+              render={(props) => (
+                <Teampage
+                  {...props}
+                  hideLoader={this.props.hideLoader}
+                  showLoader={this.props.showLoader}
                 />
               )}
             />

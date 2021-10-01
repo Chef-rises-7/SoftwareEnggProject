@@ -20,6 +20,7 @@ import Footer from "./Components/Footer/Footer";
 import OnImagesLoaded from "react-on-images-loaded";
 import { GoogleLogin, GoogleLogout } from "react-google-login";
 import Printer from "./Components/Printer/Printer.js";
+import Teampage from "./Components/Teampage/Teampage.js";
 class NavBar extends Component {
   constructor(props) {
     super(props);

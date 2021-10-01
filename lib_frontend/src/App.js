@@ -135,6 +135,70 @@ class NavBar extends Component {
                 ""
               )}
               {/* Neer profile page */}
+              {this.state.isSigned ? (
+                <>
+                  <Nav.Link
+                    onClick={() => {
+                      Swal.fire({
+                        title: "Look up profile details?",
+                        showCancelButton: true,
+                        confirmButtonText: "Look up",
+                        showLoaderOnConfirm: true,
+                        preConfirm: () => {
+                          var requestOptions = {
+                            method: "POST",
+                            headers: { "Content-Type": "application/json" },
+                            body: JSON.stringify({ email: this.state.email }),
+                          };
+                          return fetch(
+                            `http://localhost:5000/getProfile`,
+                            requestOptions
+                          )
+                            .then((response) => {
+                              if (!response.ok) {
+                                throw new Error(response.statusText);
+                              }
+                              return response.json();
+                            })
+                            .catch((error) => {
+                              Swal.showValidationMessage(
+                                `Request failed: ${error}`
+                              );
+                            });
+                        },
+                        allowOutsideClick: () => !Swal.isLoading(),
+                      }).then((result) => {
+                        if (result.isConfirmed) {
+                          console.log(result.value.Status);
+                          if (result.value.Status) {
+                            Swal.fire({
+                              icon: "info",
+                              title: `Hello!`,
+                              html:
+                                `<div style=text-align:start>` +
+                                `<b>User name: </b> ${result.value.student_name} <br>` +
+                                `<b>Roll number: </b> ${result.value.student_rollno} <br>` +
+                                `<b>Branch :  </b> ${result.value.student_branch} <br>` +
+                                `<b>Due amount (in Rs.): ${result.value.student_due} <br>` +
+                                `</div>`,
+                            });
+                          } else {
+                            Swal.fire({
+                              icon: "error",
+                              title: `${result.value.StatusMessage}`,
+                            });
+                          }
+                        }
+                      });
+                    }}
+                    className="NavLink nav-link"
+                  >
+                    <div className="secondary_Text">Profile</div>
+                  </Nav.Link>
+                </>
+              ) : (
+                ""
+              )}
               <NavLink
                 to="/library"
                 className="NavLink nav-link"

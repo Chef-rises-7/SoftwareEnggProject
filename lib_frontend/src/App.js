@@ -247,28 +247,10 @@ class NavBar extends Component {
                     onSuccess={this.signInOnSuccess}
                     onFailure={this.signInOnError}
                     cookiePolicy={"single_host_origin"}
-                    hostedDomain="iitdh.ac.in"
+                    hostedDomain=""
                     isSignedIn={true}
                   />
-                ) : (
-                    <GoogleLogout
-                      clientId="1091397760192-opdoif28tbpiac2fpcjjdtv1ir3k4n26.apps.googleusercontent.com"
-                      render={(renderProps) => (
-                        <Button
-                          className="Button"
-                          onClick={renderProps.onClick}
-                          disabled={renderProps.disabled}
-                        >
-                          SIGN OUT
-                        </Button>
-                      )}
-                      buttonText={this.state.value}
-                      onLogoutSuccess={this.signOutOnSuccess}
-                      onFailure={this.signOutOnError}
-                      hostedDomain="iitdh.ac.in"
-                      isSignedIn={true}
-                    />
-                  )}
+                ) : null}
               </Nav.Link>
             </Nav>
             {/* GAuth to be done */}

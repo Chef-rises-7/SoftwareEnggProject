@@ -247,7 +247,7 @@ class NavBar extends Component {
                     onSuccess={this.signInOnSuccess}
                     onFailure={this.signInOnError}
                     cookiePolicy={"single_host_origin"}
-                    hostedDomain=""
+                    hostedDomain="iitdh.ac.in"
                     isSignedIn={true}
                   />
                 ) : (
@@ -265,7 +265,7 @@ class NavBar extends Component {
                       buttonText={this.state.value}
                       onLogoutSuccess={this.signOutOnSuccess}
                       onFailure={this.signOutOnError}
-                      hostedDomain=""
+                      hostedDomain="iitdh.ac.in"
                       isSignedIn={true}
                     />
                 )}

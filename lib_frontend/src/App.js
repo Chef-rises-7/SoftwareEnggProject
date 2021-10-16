@@ -229,7 +229,48 @@ class NavBar extends Component {
                 <div className="secondary_Text">Team</div>
               </NavLink>
             </Nav>
-
+            <Nav fill>
+              <Nav.Link>
+                {!this.state.isSigned ? (
+                  <GoogleLogin
+                    clientId="1091397760192-opdoif28tbpiac2fpcjjdtv1ir3k4n26.apps.googleusercontent.com"
+                    render={(renderProps) => (
+                      <Button
+                        className="Button"
+                        onClick={renderProps.onClick}
+                        disabled={renderProps.disabled}
+                      >
+                        SIGN IN
+                      </Button>
+                    )}
+                    buttonText={this.state.value}
+                    onSuccess={this.signInOnSuccess}
+                    onFailure={this.signInOnError}
+                    cookiePolicy={"single_host_origin"}
+                    hostedDomain="iitdh.ac.in"
+                    isSignedIn={true}
+                  />
+                ) : (
+                    <GoogleLogout
+                      clientId="1091397760192-opdoif28tbpiac2fpcjjdtv1ir3k4n26.apps.googleusercontent.com"
+                      render={(renderProps) => (
+                        <Button
+                          className="Button"
+                          onClick={renderProps.onClick}
+                          disabled={renderProps.disabled}
+                        >
+                          SIGN OUT
+                        </Button>
+                      )}
+                      buttonText={this.state.value}
+                      onLogoutSuccess={this.signOutOnSuccess}
+                      onFailure={this.signOutOnError}
+                      hostedDomain="iitdh.ac.in"
+                      isSignedIn={true}
+                    />
+                  )}
+              </Nav.Link>
+            </Nav>
             {/* GAuth to be done */}
           </Navbar.Collapse>
         </Navbar>

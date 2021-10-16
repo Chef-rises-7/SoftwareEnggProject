@@ -250,7 +250,25 @@ class NavBar extends Component {
                     hostedDomain=""
                     isSignedIn={true}
                   />
-                ) : null}
+                ) : (
+                  <GoogleLogout
+                      clientId="1091397760192-opdoif28tbpiac2fpcjjdtv1ir3k4n26.apps.googleusercontent.com"
+                      render={(renderProps) => (
+                        <Button
+                          className="Button"
+                          onClick={renderProps.onClick}
+                          disabled={renderProps.disabled}
+                        >
+                          SIGN OUT
+                        </Button>
+                      )}
+                      buttonText={this.state.value}
+                      onLogoutSuccess={this.signOutOnSuccess}
+                      onFailure={this.signOutOnError}
+                      hostedDomain=""
+                      isSignedIn={true}
+                    />
+                )}
               </Nav.Link>
             </Nav>
             {/* GAuth to be done */}
